@@ -87,6 +87,19 @@ RUN cpanm Plack::Middleware::CrossOrigin Pod::Simple::HTML Regexp::Common Server
 RUN cpanm Text::CSV_XS Tie::IxHash URI::Encode UUID::Tiny XML::FeedPP XML::Hash::LX XML::Parser
 RUN cpanm Term::ProgressBar Term::ProgressBar::Quiet PerlX::Maybe Firebase::Auth Gravatar::URL
 
+# ENV ANYEVENT_WEBSOCKET_TEST_SKIP_SSL=1
+RUN cpanm --notest AnyEvent
+RUN cpan ADAMK/Email-Stuff-2.06.tar.gz
+RUN cpanm Term::ProgressBar::Simple
+RUN cpan GARU/Data-Printer-0.99_022.tar.gz
+RUN cpanm Business::PayPal::API
+RUN cpan RIZEN/Facebook-Graph-1.1204.tar.gz
+
+# may need other LWP from newer repo
+RUN cpanm LWP::UserAgent::Determined
+RUN cpanm Net::Amazon::S3
+
+
 # without verbose it times out and aborts due to long compilation
 RUN cpanm --verbose Memcached::libmemcached
 
