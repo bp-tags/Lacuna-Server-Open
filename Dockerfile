@@ -82,7 +82,7 @@ RUN cpanm DBIx::Class::DynamicSubclass DBIx::Class::InflateColumn::Serializer DB
 RUN cpanm Digest::HMAC_SHA1 Digest::MD5 Email::Valid File::Copy File::Path Guard IO::Socket::SSL
 RUN cpanm JSON JSON::Any JSON::RPC::Dispatcher JSON::RPC::Dispatcher::App JSON::WebToken JSON::XS List::MoreUtils List::Util
 RUN cpanm List::Util::WeightedChoice Log::Any::Adapter Log::Any::Adapter::Log4perl Log::Log4perl LWP::Protocol::https LWP::UserAgent
-RUN cpanm Module::Find Moose namespace::autoclean Net::Amazon::S3 Net::Server::SS::PreFork Path::Class
+RUN cpanm Module::Find Moose namespace::autoclean Net::Server::SS::PreFork Path::Class
 RUN cpanm Plack::Middleware::CrossOrigin Pod::Simple::HTML Regexp::Common Server::Starter SOAP::Lite String::Random
 RUN cpanm Text::CSV_XS Tie::IxHash URI::Encode UUID::Tiny XML::FeedPP XML::Hash::LX XML::Parser
 RUN cpanm Term::ProgressBar Term::ProgressBar::Quiet PerlX::Maybe Firebase::Auth Gravatar::URL
