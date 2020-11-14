@@ -4,7 +4,7 @@
 <head>
     <title>Lacuna Expanse</title>
         <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/yui/2.8.1/build/reset-fonts-grids/reset-fonts-grids.css" />
-        <link rel="stylesheet" type="text/css" href="http://192.168.0.37:8080/lacuna/styles.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/starmap/yui/styles.css" />
         <link href="//cdnjs.cloudflare.com/ajax/libs/pnotify/2.0.0/pnotify.all.min.css" rel="stylesheet">
         <link rel="icon" href="http://s3.amazonaws.com/www.lacunaexpanse.com/favicon.png" type="image/png" />
         <link rel="SHORTCUT ICON" href="http://s3.amazonaws.com/www.lacunaexpanse.com/favicon.ico" />
@@ -12,7 +12,7 @@
 <body id="body" class="yui-skin-sam">
     <div id="pulsing" class="nofooter yui-panel">
         <div class="bd">
-            <img src="/assets/ui/pulse-indicator.gif" alt="Pulse Indicator" />
+            <img src="http://localhost:8000/starmap/yui/assets/ui/pulse-indicator.gif" alt="Pulse Indicator" />
         </div>
     </div>
     <div id="header" class="yui-gb hidden">
@@ -55,11 +55,11 @@
     </script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/yui/2.8.1/build/yuiloader/yuiloader-min.js"></script>
     <script type="text/javascript">
-      lacuna_rpc_base_url = '';
-      lacuna_s3_base_url = '//192.168.0.37:8080/';
+      lacuna_rpc_base_url = 'http://localhost:5000/';
+      lacuna_s3_base_url = '//localhost:8000/starmap/yui/';
     </script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/yui/2.8.1/build/yuiloader/yuiloader-min.js"></script>
-    <script type="text/javascript" src="http://192.168.0.37:8080/lacuna/load.js"></script>
+    <script type="text/javascript" src="http://localhost:8000/starmap/yui/load.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/pnotify/2.0.0/pnotify.all.min.js"></script>
 </body>
