@@ -32,15 +32,15 @@ WORKDIR /downloads
 RUN rm -rf libevent-1.4.14b-stable
 
 WORKDIR /downloads
-RUN wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.5.tar.gz
-RUN tar xfz memcached-1.4.5.tar.gz
-RUN rm --interactive=never memcached-1.4.5.tar.gz
-WORKDIR memcached-1.4.5
+RUN wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.15.tar.gz
+RUN tar xfz memcached-1.4.15.tar.gz
+RUN rm --interactive=never memcached-1.4.15.tar.gz
+WORKDIR memcached-1.4.15
 RUN ./configure --prefix=/data/apps
 RUN make
 RUN make install
 WORKDIR /downloads
-RUN rm -rf memcached-1.4.5
+RUN rm -rf memcached-1.4.15
 
 WORKDIR /downloads
 RUN wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.37.tar.gz
