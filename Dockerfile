@@ -43,7 +43,7 @@ WORKDIR /downloads
 RUN rm -rf memcached-1.4.15
 
 WORKDIR /downloads
-RUN wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.37.tar.gz
+RUN wget https://ftp.pcre.org/pub/pcre/pcre-8.37.tar.gz
 RUN tar xfz pcre-8.37.tar.gz
 RUN rm --interactive=never pcre-8.37.tar.gz
 
