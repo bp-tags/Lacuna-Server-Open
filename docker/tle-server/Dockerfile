@@ -42,7 +42,9 @@ RUN cpanm --verbose Test::Most
 # ENV ANYEVENT_WEBSOCKET_TEST_SKIP_SSL=1
 RUN cpan MLEHMANN/AnyEvent-7.17.tar.gz
 RUN cpanm Test::Most Test::Trap Beanstalk::Client Chat::Envolve Clone Config::JSON Config::YAML
-RUN cpanm DateTime DateTime::Format::Duration DateTime::Format::MySQL DateTime::Format::Strptime DBD::mysql DBIx::Class
+RUN cpanm DateTime DateTime::Format::Duration DateTime::Format::MySQL DateTime::Format::Strptime DBD::mysql
+RUN cpan REHSACK/Hash-Merge-0.300.tar.gz
+RUN cpanm Sub::Name Class::Accessor::Grouped SQL::Abstract::Classic
 RUN cpanm DBIx::Class::DynamicSubclass DBIx::Class::InflateColumn::Serializer DBIx::Class::Schema DBIx::Class::TimeStamp
 RUN cpanm Digest::HMAC_SHA1 Digest::MD5
 RUN cpan ADAMK/Email-Stuff-2.06.tar.gz
