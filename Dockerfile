@@ -1,6 +1,6 @@
-FROM centos:6
+FROM centos:7
 
-RUN yum install -y cpan wget tar gcc gcc-c++ zlib-devel openssl-devel expat expat-devel ncurses-devel
+RUN yum install -y make cpan wget tar gcc gcc-c++ zlib-devel openssl-devel expat expat-devel ncurses-devel
 RUN yum install -y glibc-devel git mysql mysql-devel libxml2 libxml2-devel mysql-server gd gd-devel
 
 RUN mkdir /downloads
@@ -32,7 +32,7 @@ WORKDIR /downloads
 RUN rm -rf libevent-1.4.14b-stable
 
 WORKDIR /downloads
-RUN wget http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
+RUN wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/memcached/memcached-1.4.5.tar.gz
 RUN tar xfz memcached-1.4.5.tar.gz
 RUN rm --interactive=never memcached-1.4.5.tar.gz
 WORKDIR memcached-1.4.5
