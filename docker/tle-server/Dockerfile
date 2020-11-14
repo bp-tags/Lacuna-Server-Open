@@ -40,11 +40,13 @@ RUN cpanm Time::HiRes
 RUN cpanm --verbose Test::Most
 
 # ENV ANYEVENT_WEBSOCKET_TEST_SKIP_SSL=1
-RUN cpan MLEHMANN/AnyEvent-7.14.tar.gz
+RUN cpan MLEHMANN/AnyEvent-7.17.tar.gz
 RUN cpanm Test::Most Test::Trap Beanstalk::Client Chat::Envolve Clone Config::JSON Config::YAML
 RUN cpanm DateTime DateTime::Format::Duration DateTime::Format::MySQL DateTime::Format::Strptime DBD::mysql DBIx::Class
 RUN cpanm DBIx::Class::DynamicSubclass DBIx::Class::InflateColumn::Serializer DBIx::Class::Schema DBIx::Class::TimeStamp
-RUN cpanm Digest::HMAC_SHA1 Digest::MD5 Email::Stuff Email::Valid File::Copy File::Path Guard IO::Socket::SSL
+RUN cpanm Digest::HMAC_SHA1 Digest::MD5
+RUN cpan ADAMK/Email-Stuff-2.06.tar.gz
+RUN cpanm Email::Valid File::Copy File::Path Guard IO::Socket::SSL
 RUN cpanm JSON JSON::WebToken JSON::XS List::MoreUtils List::Util
 RUN cpanm List::Util::WeightedChoice Log::Any::Adapter Log::Any::Adapter::Log4perl Log::Log4perl LWP::Protocol::https LWP::UserAgent
 
@@ -52,6 +54,7 @@ RUN cpanm List::Util::WeightedChoice Log::Any::Adapter Log::Any::Adapter::Log4pe
 RUN cpanm --notest IO::Socket::IP
 
 # Move these so deps. come first / and reduce duplicates also ver.
+RUN cpan GARU/Data-Printer-0.99_022.tar.gz
 RUN cpanm Business::PayPal::API
 RUN cpan RIZEN/Facebook-Graph-1.1204.tar.gz
 
