@@ -96,7 +96,7 @@ RUN cpanm Business::PayPal::API
 RUN cpan RIZEN/Facebook-Graph-1.1204.tar.gz
 
 # may need other LWP from newer repo
-RUN cpanm LWP::UserAgent::Determined
+RUN cpanm --notest LWP::UserAgent::Determined
 RUN cpanm Net::Amazon::S3
 
 
