@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum install -y make cpan wget tar gcc gcc-c++ zlib-devel openssl-devel expat expat-devel ncurses-devel
+RUN yum install -y make cpan wget tar gcc gcc-c++ zlib-devel openssl openssl-devel expat expat-devel ncurses-devel
 RUN yum install -y glibc-devel git mysql mysql-devel libxml2 libxml2-devel mysql-server gd gd-devel
 
 RUN mkdir /downloads
@@ -53,11 +53,11 @@ RUN tar xfz openssl-1.0.0c.tar.gz
 RUN rm --interactive=never openssl-1.0.0c.tar.gz
 
 WORKDIR /downloads
-RUN wget http://nginx.org/download/nginx-0.7.67.tar.gz
-RUN tar xfz nginx-0.7.67.tar.gz
-RUN rm --interactive=never nginx-0.7.67.tar.gz
+RUN wget http://nginx.org/download/nginx-1.17.6.tar.gz
+RUN tar xfz nginx-1.17.6.tar.gz
+RUN rm --interactive=never nginx-1.17.6.tar.gz
 
-WORKDIR nginx-0.7.67
+WORKDIR nginx-1.17.6
 RUN ./configure --prefix=/data/apps --with-pcre=../pcre-8.37 --with-http_ssl_module --with-openssl=../openssl-1.0.0c
 RUN make
 RUN make install
@@ -65,7 +65,7 @@ RUN make install
 WORKDIR /downloads
 RUN rm -rf pcre-8.37
 RUN rm -rf openssl-1.0.0c
-RUN rm -rf nginx-0.7.67
+RUN rm -rf nginx-1.17.6
 
 ENV PATH /data/apps/bin:/data/app/sbin:$PATH
 ENV LD_LIBRARY_PATH /data/apps/lib:$LD_LIBRARY_PATH
