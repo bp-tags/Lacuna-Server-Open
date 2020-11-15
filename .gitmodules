@@ -7,3 +7,6 @@
 [submodule "var/www/public/starmap/yui"]
 	path = var/www/public/starmap/yui
 	url = https://github.com/bp-tags/Lacuna-Web-Client.git
+[submodule "var/www/public/starmap"]
+	path = var/www/public/starmap
+	url = git@github.com:bp-tags/Lacuna-Web-Client.git
