@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="manifest" href="manifest.json">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="SFS2X AdminTool">
+	<meta name="author" content="The SmartFoxServer Team">
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+
+	<title>SmartFoxServer 2X Administration Tool</title>
+
+	<link rel="icon" type="image/png" href="assets/images/favicon-64x64.png" sizes="64x64" />
+	<link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+	<link rel="apple-touch-icon" type="image/png" href="assets/images/apple-touch-icon-180x180.png" sizes="180x180" />
+
+	<!-- Bootstrap (CUSTOMIZED) -->
+	<!-- https://bootstrap.build/app -->
+	<link rel="stylesheet" type="text/css" href="assets/css/custom-bootstrap.min.css" />
+
+	<!-- Kendo UI "Bootstrap v4" theme (CUSTOMIZED) -->
+    <!-- https://themebuilder.telerik.com/kendo-ui -->
+	<link href="assets/css/kendo.custom-bootstrap-v4.css" rel="stylesheet" />
+
+	<!-- jQuery Scrolling Tabs -->
+	<link rel="stylesheet" type="text/css" href="assets/css/jquery.scrolling-tabs.min.css" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="assets/css/fontawesome/css/all.min.css">
+
+	<!-- Main styling -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+<body>
+	<view-stack id="shell" class="hidden">
+		<div id="login-view" class="page-centered">
+			<div id="loginBox" class="col-sm-7 col-md-5 col-lg-4">
+				<div class="at-title">
+					<h3 class="title">SmartFox<span>Server</span></h3>
+					<div class="subtitle">remote administration</div>
+				</div>
+				<form id="loginForm">
+					<fieldset>
+						<div class="form-group position-relative">
+							<label for="loginHost">Host <small class="text-muted">(DNS name or IP address)</small></label>
+							<input type="text" class="form-control k-textbox" id="loginHost" name="loginHost" required data-required-msg="Required">
+						</div>
+						<div class="form-group position-relative">
+							<label for="loginPort">Port</label>
+							<input type="number" class="form-control w-100" id="loginPort" name="loginPort" min="1" max="65535" required data-required-msg="Required">
+							<span class="k-invalid-msg" data-for="loginPort"></span>
+						</div>
+						<div class="form-group position-relative">
+							<div class="custom-control custom-checkbox">
+							  <input class="custom-control-input" type="checkbox" id="loginEncrypt">
+							  <label class="custom-control-label" for="loginEncrypt">Encrypt</label>
+							</div>
+						</div>
+						<div class="form-group position-relative">
+							<label for="loginUsername">Username</label>
+							<input type="text" class="form-control k-textbox" id="loginUsername" name="loginUsername" required data-required-msg="Required" autocomplete="username">
+						</div>
+						<div class="form-group position-relative">
+							<label for="loginPassword">Password</label>
+							<input type="password" class="form-control k-textbox" id="loginPassword" name="loginPassword" required data-required-msg="Required" autocomplete="current-password">
+						</div>
+						<div class="form-row align-items-center">
+							<div class="form-group col-auto">
+								<button id="loginButton" type="button" class="k-button k-primary"><i class="fas fa-power-off mr-1"></i>Connect</button>
+							</div>
+							<div class="form-group col-6">
+								<div class="custom-control custom-checkbox">
+							      <input class="custom-control-input" type="checkbox" id="rememberLogin">
+							      <label class="custom-control-label" for="rememberLogin">Remember me</label>
+							    </div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+				<div id="login-error" class="alert alert-danger mt-3" role="alert" style="display: none;"></div>
+			</div>
+		</div>
+		<div id="bookmarks-view" class="page-centered">
+			bookmarks view
+		</div>
+
+		<div id="module-view">
+			<nav class="nav-container">
+				<header>
+					<div class="at-title">
+						<h3 class="title">SmartFox<span>Server</span></h3>
+						<div class="subtitle">remote administration</div>
+						<div id="sfs-version">
+							<span class="sfs-version">Server version:</span>
+							<a id="sfs-version-button">
+								<span id="sfs-version-value" class="sfs-version"></span>
+								<i id="sfs-version-alert" class="fas fa-bell fa-xs text-warning"></i>
+							</a>
+						</div>
+					</div>
+					<a href="#" class="nav-close">Close</a> <!-- visible on small screens only -->
+				</header>
+				<div class="nav-content">
+					<ul class="nav nav-main"></ul>
+					<ul class="nav nav-service">
+						<li id="restart-button" class="service-item service-restart" title="Restart server">
+							<img src="assets/images/service-restart.png">
+							<label>Restart server</label>
+						</li>
+						<li id="halt-button" class="service-item service-halt" title="Stop server">
+							<img src="assets/images/service-halt.png">
+							<label>Stop server</label>
+						</li>
+						<li id="help-button" class="service-item" title="Open online documentation">
+							<img src="assets/images/service-help.png">
+							<label>Online help</label>
+						</li>
+						<li id="disconnect-button" class="service-item" title="Logout">
+							<img src="assets/images/service-logout.png">
+							<label>Logout</label>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="nav-overlay"></div>
+
+			<main class="module-container">
+				<header class="module-header">
+					<div id="status-bar" class="padded">
+						<div><i class="fas fa-server"></i> <span id="host-label"></span></div>
+						<div id="module-title"><i class="fas fa-wrench"></i> <span id="module-title-label"></span></div>
+					</div>
+					<a href="#" class="nav-open"> <!-- visible on small screens only -->
+						Open<span><!-- Used to create the menu icon --></span>
+					</a>
+					<div id="alert-bar" class="padded"></div>
+				</header>
+				<div class="module-loader"></div>
+			</main>
+		</div>
+	</view-stack>
+
+	<!-- ======================================================== -->
+
+	<div id="no-support" class="hidden">
+		<div class="at-title">
+			<h3 class="title">SmartFox<span>Server</span></h3>
+			<div class="subtitle">remote administration</div>
+		</div>
+		<p>The browser you are using in not supported. Please try with the latest version, or use a different browser.</p>
+	</div>
+
+	<!-- ======================================================== -->
+
+	<div class="toast-container"></div>
+
+	<!-- ======================================================== -->
+
+	<div id="serverUpdateModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="serverUpdateModalTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-primary" id="serverUpdateModalTitle">Server update</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h3>SmartFoxServer 2X v<span id="newVersLb"></span><br>is out now</h3>
+					<p>The new version is provided as a <span id="updTypeLb"></span> available on the SmartFoxServer website<span id="reqVersLb"></span>; click the button below to go to the download page and follow the installation instructions.</p>
+					<small class="text-muted">(currently installed version is <span id="currVersLb"></span>)</small>
+				</div>
+				<div class="modal-footer flex-column">
+					<div class="d-flex w-100">
+						<div class="flex-grow-1 text-left">
+							<a id="serverUpdateModalLink" class="k-button k-primary" href="#" target="_blank"><i class="fas fa-download mr-1"></i>Download</a>
+						</div>
+						<div class="flex-grow-1 text-right">
+							<button type="button" class="k-button k-secondary" data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ======================================================== -->
+
+	<!-- Bootstrap JavaScript plugin -->
+	<script type="text/javascript" src="assets/js/libs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/libs/popper.min.js"></script>
+	<script type="text/javascript" src="assets/js/libs/bootstrap.min.js"></script>
+
+	<!-- Kendo UI combined JavaScript library -->
+	<script src="assets/js/libs/kendo.all.min.js"></script>
+
+	<!-- JavaScript Cookie library -->
+	<script type="text/javascript" src="assets/js/libs/js.cookie.min.js"></script>
+
+	<!-- jQuery Scrolling Tabs JavaScript library -->
+	<script src="assets/js/libs/jquery.scrolling-tabs.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/libs/sfs2x-api-1.7.15.js"></script>
+	<script type="text/javascript" src="assets/js/core/application.bundle.js" async></script>
+
+	<script>
+		$(document).ready(function() {
+			// Validate browser
+			if (isBrowserSupported())
+				$('view-stack').removeClass('hidden');
+			else
+				$('#no-support').removeClass('hidden');
+		});
+
+		function isBrowserSupported()
+		{
+			return ('customElements' in window)
+		}
+	</script>
+</body>
+</html>
