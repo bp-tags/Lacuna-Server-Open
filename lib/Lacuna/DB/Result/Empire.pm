@@ -1096,18 +1096,18 @@ sub add_observatory_probe {
 #                                                   star_id => $star_id,
 #                                                   empire_id => {'!=', $self->id }
 #                                               });
-    for my $eid (keys %to_notify) {
-        my $that_empire = Lacuna->db->resultset('Empire')->find($eid);
-        next unless $that_empire;
-        if (!$that_empire->skip_probe_detected) {
-            $that_empire->send_predefined_message(
-                filename    => 'probe_detected.txt',
-                tags        => ['Probe','Alert'],
-                from        => $that_empire,
-                params      => [$star->x, $star->y, $star->name, $self->id, $self->name],
-            );
-        }
-    }
+#    for my $eid (keys %to_notify) {
+#        my $that_empire = Lacuna->db->resultset('Empire')->find($eid);
+#        next unless $that_empire;
+#        if (!$that_empire->skip_probe_detected) {
+#            $that_empire->send_predefined_message(
+#                filename    => 'probe_detected.txt',
+#                tags        => ['Probe','Alert'],
+#                from        => $that_empire,
+#                params      => [$star->x, $star->y, $star->name, $self->id, $self->name],
+#            );
+#        }
+#    }
     
     $self->clear_probed_stars;
     return $self;
