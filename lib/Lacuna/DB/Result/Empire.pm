@@ -867,7 +867,7 @@ sub found {
   $self->home_planet($home_planet);
 #  weaken($self->{_relationship_data}{home_planet});
 
-#  $self->add_observatory_probe($home_planet->star_id, $home_planet->id);
+  $self->add_observatory_probe($home_planet->star_id, $home_planet->id);
 
   # found colony
   $home_planet->found_colony($self);
@@ -1079,13 +1079,14 @@ sub add_observatory_probe {
     my ($self, $star_id, $body_id) = @_;
 
     # add probe
-    Lacuna->db->resultset('Probes')->new({
-        empire_id   => $self->id,
-        star_id     => $star_id,
-        body_id     => $body_id,
-        alliance_id => $self->alliance_id,
-        virtual     => 0,
-    })->insert;
+    
+#    Lacuna->db->resultset('Probes')->new({
+#        empire_id   => $self->id,
+#        star_id     => $star_id,
+#        body_id     => $body_id,
+#        alliance_id => $self->alliance_id,
+#        virtual     => 0,
+#    })->insert;
     
     # send notifications
     my $star = Lacuna->db->resultset('Map::Star')->find($star_id);
