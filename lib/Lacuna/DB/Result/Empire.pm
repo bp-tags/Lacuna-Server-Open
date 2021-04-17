@@ -1091,11 +1091,11 @@ sub add_observatory_probe {
     # send notifications
     my $star = Lacuna->db->resultset('Map::Star')->find($star_id);
     # Get all empires to be notified that have probes (real or virtual)
-    my %to_notify = map { $_->empire_id => 1 } Lacuna->db->resultset('Probes')
-                                               ->search_any({
-                                                   star_id => $star_id,
-                                                   empire_id => {'!=', $self->id }
-                                               });
+#    my %to_notify = map { $_->empire_id => 1 } Lacuna->db->resultset('Probes')
+#                                               ->search_any({
+#                                                   star_id => $star_id,
+#                                                   empire_id => {'!=', $self->id }
+#                                               });
     for my $eid (keys %to_notify) {
         my $that_empire = Lacuna->db->resultset('Empire')->find($eid);
         next unless $that_empire;
@@ -1161,24 +1161,24 @@ sub next_colony_cost {
 
 # Get all probes, either observatory or oracle
 #
-has probed_stars => (
-    is          => 'rw',
-    clearer     => 'clear_probed_stars',
-    lazy        => 1,
-    default     => sub {
-        my $self = shift;
-        my %search = (
-            empire_id => $self->id,
-        );
-        if ($self->alliance_id) {
-            %search = (
-                alliance_id => $self->alliance_id,
-            );
-        }
-        my @stars = Lacuna->db->resultset('Probes')->search_any(\%search)->get_column('star_id')->all;
-        return \@stars;
-    },
-);
+#has probed_stars => (
+#    is          => 'rw',
+#    clearer     => 'clear_probed_stars',
+#    lazy        => 1,
+#    default     => sub {
+#        my $self = shift;
+#        my %search = (
+#            empire_id => $self->id,
+#        );
+#        if ($self->alliance_id) {
+#            %search = (
+#                alliance_id => $self->alliance_id,
+#            );
+#        }
+#        my @stars = Lacuna->db->resultset('Probes')->search_any(\%search)->get_column('star_id')->all;
+#        return \@stars;
+#    },
+#);
 
 # Get number of probed stars, either observatory or oracle
 #
