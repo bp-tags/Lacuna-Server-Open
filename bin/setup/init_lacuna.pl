@@ -235,6 +235,7 @@ sub create_lacunan_home_world {
         stage               => 'founded',
         status_message      => 'Will trade for Essentia.',
         password            => Lacuna::DB::Result::Empire->encrypt_password(rand(99999999)),
+        sitter_password     => 'testsit',
         species_name            => 'Lacunan',
         species_description     => 'The economic dieties that control the Lacuna Expanse.',
         min_orbit               => 1,
