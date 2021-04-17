@@ -867,7 +867,7 @@ sub found {
   $self->home_planet($home_planet);
 #  weaken($self->{_relationship_data}{home_planet});
 
-  $self->add_observatory_probe($home_planet->star_id, $home_planet->id);
+#  $self->add_observatory_probe($home_planet->star_id, $home_planet->id);
 
   # found colony
   $home_planet->found_colony($self);
