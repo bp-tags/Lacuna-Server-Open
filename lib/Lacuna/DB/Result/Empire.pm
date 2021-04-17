@@ -1109,7 +1109,7 @@ sub add_observatory_probe {
 #        }
 #    }
     
-    $self->clear_probed_stars;
+#    $self->clear_probed_stars;
     return $self;
 }
 
